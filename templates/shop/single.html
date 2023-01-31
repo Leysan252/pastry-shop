@@ -1,0 +1,52 @@
+{% extends 'auth/../auth/base_page.html' %}
+{% load static %}
+
+
+{% block title %}
+    SweetCake | Информация о товаре
+{% endblock title %}
+
+{% block container %}
+<!--//single-page-->
+<div class="single">
+    <div class="container">
+        <div class="single-grids">
+            <div class="col-md-5 single-grid">
+                <div class="flexslider">
+                    <ul class="slides">
+                        <li>
+                            <div class="thumb-image"><img src="{{ product.image_file.url }}" data-imagezoom="true"
+                                                          class="img-responsive"></div>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <form method="post" action="{% url 'add_item_to_cart' product.pk %}">
+                <div class="col-md-5 single-grid simpleCart_shelfItem">
+                    <h3>{{ product.type_p }} {{ product.name }}</h3>
+                    <p>{{ product.note }}</p>
+
+
+                    <div class="galry">
+                        <div class="prices">
+                            <h5 class="item_price">{{ product.price }} {{ product.unit }}</h5>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    {% csrf_token %}
+                    <p class="qty"> Вес : </p><input min="1" type="number" id="quantity" name="quantity" value="1"
+                                                     class="form-control input-small">
+                    <div class="btn_form">
+                        <input type="submit" class="add-cart item_add" value="Добавить">
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--related-products-->
+{% endblock container %}

@@ -1,0 +1,30 @@
+{% extends 'auth/base_page.html' %}
+{% load static %}
+
+
+{% block title %}
+    SweetCake | Начальная страница
+{% endblock title %}
+
+{% block container %}
+    <!--banner-->
+    <div class="banner">
+        <div class="container">
+            <h2 class="hdng">SweetCake <span>Made</span> with love</h2>
+            <p>Здесь вы найдете любой десерт на Ваш вкус</p>
+            <a href="{% url "products" %}">Сделайте заказ</a>
+            <div class="banner-text">
+                <img src="{% static 'images/1.png' %}" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div class="container">
+            <div class="gallery-grids">
+
+            </div>
+        </div>
+    </div>
+
+    <!--//banner-->
+{% endblock container %}

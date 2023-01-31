@@ -1,0 +1,41 @@
+{% extends 'auth/../auth/base_page.html' %}
+{% load static %}
+{% block title %}
+    SweetCake | Аккаунт
+{% endblock title %}
+
+{% block container %}
+    <!--account-->
+    <div class="account">
+        <div class="container">
+            <div class="register">
+                <form method="post" action="{% url 'account' %}">
+                    {% csrf_token %}
+                    <div class="register-top-grid">
+                        <h3>Персональная информация</h3>
+                    </div>
+                    {% for field in user_form %}
+                        <div class="register-bottom-grid">
+                            <div class="input">
+                                <span style="color: red">{{ field.errors }}</span>
+                                {{ field.label_tag }}
+                                {{ field }}
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+
+                    {% endfor %}
+                    <div class="register-but">
+                        <form >
+                            <center><input class = "btn btn-success" type="submit" value="Регистрация"></center>
+                            <div class="clearfix"></div>
+                        </form>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock container %}
+<!--//account-->

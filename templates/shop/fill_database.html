@@ -1,0 +1,72 @@
+{% extends 'auth/base_page.html' %}
+{% load static %}
+{% block title %}
+    SweetCake | Админ
+{% endblock title %}
+
+{% block container %}
+    <div class="container">
+        <div class="register">
+            <form method="POST" action="{% url 'fill_database' %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+                {% if messages %}
+                    <div class="mb-3">
+                        {% for message in messages %}
+                            <p class="alert alert-danger">{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="register-top-grid">
+                    <label for="type_p" class="form-label">Тип продукта </label> &nbsp;&nbsp;
+                    <select class="form-select" id="type_p" aria-label="Default select example" name="type_p">
+                        <option selected>-</option>
+                        <option value="Торт">Торт</option>
+                        <option value="Капкейк">Капкейк</option>
+                        <option value="Трайфл">Трайфл</option>
+                        <option value="Кейк-попс">Кейк-попс</option>
+                        <option value="Чизкейк">Чизкейк</option>
+                    </select>
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <label for="exampleInputPassword1" class="form-label"> Название</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="name">
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <label for="exampleInputPassword1" class="form-label">Стоимость</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="price">
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <label for="exampleInputPassword1" class="form-label">Единица измерения</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="unit" maxlength="10"
+                           minlength="10">
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <label for="file-input" class="form-label">Фотография</label>
+                    <img id="upload-image">
+                    <div>
+                        <input id="file-input" type="file" name="image_file" multiple>
+                    </div>
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <label for="exampleInputPassword1" class="form-label">Комментарий</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" name="note">
+                </div>
+                <br>
+                <div class="register-top-grid">
+                    <center>
+                        <button type="submit" class="btn btn-success" style="background-color: #f07818">Добавить</button>
+                    </center>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+
+{% endblock container %}

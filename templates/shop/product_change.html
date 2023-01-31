@@ -1,0 +1,50 @@
+{% extends 'auth/../auth/base_page.html' %}
+{% load static %}
+{% block title %}
+    SweetCake | Изменение данных
+{% endblock title %}
+
+{% block container %}
+    <div class="flx">
+    <form method="POST">
+        {% csrf_token %}
+        {% if messages %}
+            <div class="mb-3">
+                {% for message in messages %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Тип продукта</label>
+            {{ form.type_p }}
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Название</label>
+            {{ form.name }}
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Стоимость</label>
+            {{ form.price }}
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Единица измерения</label>
+            {{ form.unit }}
+        </div>
+        <div class="mb-3">
+           <label for="file-input" class="form-label">Фотография</label>
+                    <img id="upload-image">
+                    <div>
+                        <input id="file-input" type="file" name="image_file" multiple>
+                    </div>
+            {{ form.image_file }}
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">Комментарий</label>
+            {{ form.note }}
+        </div>
+        <button type="submit" class="btn btn-success">Отправить</button>
+    </form>
+</div>
+
+{% endblock container %}

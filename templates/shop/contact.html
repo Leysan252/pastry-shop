@@ -1,0 +1,72 @@
+{% extends 'auth/base_page.html' %}
+{% load static %}
+
+
+{% block title %}
+    SweetCake | Контакты
+{% endblock title %}
+
+{% block container %}
+    <!--contact-->
+    <div class="contact">
+        <div class="container">
+            <h2> О нас</h2>
+            <div class="map">
+                <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Af2a11d2facce78c2c6757ab8f932e0cb36b5ef158cc25ac8f90bc315ff0690f0&amp;source=constructor"
+                        width="500" height="400" frameborder="0"></iframe>
+            </div>
+
+            <div class="address">
+                <div class="col-md-4 address-grids">
+                    <h4>Адрес :</h4>
+                    <ul>
+                        <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                        <p> Республика Татарстан<br>
+                            г.Казань<br>
+                            Улица Баумана 43
+                        </p>
+                    </ul>
+                </div>
+                <div class="col-md-4 address-grids">
+                    <h4>Контакты :</h4>
+                    <p><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+7(917) 225 19 26</p>
+                    <p><span class="glyphicon glyphicon-print" aria-hidden="true"></span>+7(917) 225 63 70</p>
+                </div>
+                <div class="col-md-4 address-grids">
+                    <h4>Почта :</h4>
+                    <p><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a
+                            href="mailto:example@mail.com">sweetcake@mail.ru</a></p>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="contact-form">
+                <h4>Обратная связь</h4>
+                    <form method="POST" action="{% url 'contact' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% if messages %}
+                            <div class="mb-3">
+                                {% for message in messages %}
+                                    <p class="alert alert-danger">{{ message }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <input type="text" value="Имя" onfocus="this.value = '';"
+                                 name="name_r">
+                        <input type="text" value="Почта" onfocus="this.value = '';"
+                                name="email_r">
+                        <input type="text" value="Номер телефона" onfocus="this.value = '';"
+                                name="number">
+                        <textarea type="text" onfocus="this.value = '';"
+
+                                   name="message">Сообщение...</textarea>
+
+                        <input id="upload-image" type="file" name="image_r" multiple>
+
+                        <button class="btn1">Отправить</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+    <!--//contact-->
+
+{% endblock container %}

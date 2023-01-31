@@ -1,0 +1,57 @@
+{% extends 'auth/../auth/base_page.html' %}
+{% load static %}
+{% block title %}
+    SweetCake | Товары
+{% endblock title %}
+
+{% block container %}
+
+    <!--products-->
+    <div class="products">
+        <div class="container">
+            <h2>Ассортимент</h2>
+            <form class="col-md-9.product-model-sec">
+                {% for product in object_list %}
+                    <div class="product-grid">
+                        <form method=   "post" action="{% url 'add_item_to_cart' product.pk %}">
+                            <a href="{% url 'single' product.pk %}">
+                                <div class="more-product"><span> </span></div>
+
+                                <div class="product-img b-link-stripe b-animate-go  thickbox">
+
+                                    <img src="{{ product.image_file.url }}" class="img-responsive" alt="...">
+                                    <div class="b-wrapper">
+                                        <h4 class="b-animate b-from-left  b-delay03">
+                                            <button>Подробнее</button>
+                                        </h4>
+                                    </div>
+                                </div>
+
+                            </a>
+                            <div class="product-info simpleCart_shelfItem">
+                                <div class="product-info-cust prt_name">
+                                    <h4>{{ product.name }}</h4>
+                                    <p class="more-product-info">
+                                    <h5>{{ product.type_p }}</h5>
+                                    </p>
+                                    <span class="item_price">Цена: {{ product.price }} {{ product.unit }}</span>
+                                    {% csrf_token %}
+                                    <label class="form-label" for="id_quantity">Вес/количество:</label>
+                                    <input type="number" name="quantity" value="1" min="1"
+                                           required id="id_quantity"/>
+                                    <input type="submit" class="item_add items" value="Добавить">
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                {% endfor %}
+
+
+            </form>
+
+        </div>
+    </div>
+    <!--//products-->
+{% endblock container %}
